@@ -111,6 +111,7 @@ function App() {
       </div>
       <header>
         <h1>🎬 Movie Search App</h1>
+        <div className="app-tagline">Find and explore movies instantly</div>
         <div className="header-controls">
           <SearchBar onSearch={searchMovies} />
         </div>
@@ -188,7 +189,9 @@ function App() {
       </main>
 
       <footer>
-        <p>Powered by OMDb API</p>
+        <p>
+          Movie Search App &copy; {new Date().getFullYear()} | Powered by OMDb API
+        </p>
       </footer>
     </div>
   );

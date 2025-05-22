@@ -61,8 +61,21 @@ header {
 }
 
 header h1 {
-  margin-bottom: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
   color: var(--primary-color);
+  letter-spacing: 0.5px;
+  font-size: 2.5rem;
+}
+
+.app-tagline {
+  color: var(--text-light);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
 }
 
 /* Header Controls */
@@ -627,6 +640,7 @@ footer {
   padding: 20px 0;
   color: var(--text-light);
   font-size: 14px;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Responsive Design */
