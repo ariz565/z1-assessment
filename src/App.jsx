@@ -23,6 +23,7 @@ function App() {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : false;
   });
+  const [fadeOut, setFadeOut] = useState(false);
 
   // Apply dark mode effect
   useEffect(() => {
@@ -97,6 +98,18 @@ function App() {
     setSelectedMovie(null);
   };
 
+  const handleClearSearch = () => {
+    // Trigger fade-out animation
+    setFadeOut(true);
+
+    // After animation completes, clear the results
+    setTimeout(() => {
+      setMovies([]);
+      setSearchTerm("");
+      setFadeOut(false);
+    }, 500); // Match this with CSS transition duration
+  };
+
   return (
     <div className="app-container">
       <div className="theme-container">
@@ -113,7 +126,7 @@ function App() {
         <h1>🎬 Movie Search App</h1>
         <div className="app-tagline">Find and explore movies instantly</div>
         <div className="header-controls">
-          <SearchBar onSearch={searchMovies} />
+          <SearchBar onSearch={searchMovies} onClear={handleClearSearch} />
         </div>
 
         {recentSearches.length > 0 && (
@@ -156,18 +169,20 @@ function App() {
 
         {!error && !selectedMovie && (
           <>
-            <MovieList
-              movies={movies}
-              onMovieSelect={getMovieDetails}
-              loading={loading}
-            />
-            {!loading && movies.length > 0 && totalResults > 10 && (
-              <Pagination
-                currentPage={currentPage}
-                totalResults={totalResults}
-                onPageChange={handlePageChange}
+            <div className={`movie-results ${fadeOut ? "fade-out" : ""}`}>
+              <MovieList
+                movies={movies}
+                onMovieSelect={getMovieDetails}
+                loading={loading}
               />
-            )}
+              {!loading && movies.length > 0 && totalResults > 10 && (
+                <Pagination
+                  currentPage={currentPage}
+                  totalResults={totalResults}
+                  onPageChange={handlePageChange}
+                />
+              )}
+            </div>
           </>
         )}
 
@@ -190,7 +205,8 @@ function App() {
 
       <footer>
         <p>
-          Movie Search App &copy; {new Date().getFullYear()} | Powered by OMDb API
+          Movie Search App &copy; {new Date().getFullYear()} | Powered by OMDb
+          API
         </p>
       </footer>
     </div>

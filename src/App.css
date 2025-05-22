@@ -1,14 +1,8 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  #root {
-    padding: 2rem;
-  }
 }
 
 .logo {
@@ -47,33 +41,16 @@
   color: #888;
 }
 
-/* Movie Detail Actions */
-.detail-actions {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  width: 100%;
+.movie-results {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
-.new-search-button {
-  background-color: var(--secondary-color);
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  font-weight: bold;
-  transition: var(--transition);
-  flex: 1;
+.movie-results.fade-out {
+  opacity: 0;
 }
 
-.new-search-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* Update the back button to remove margin-bottom */
-.back-button {
-  margin-bottom: 0;
-  flex: 1;
+/* Making sure the container maintains its dimensions during fade-out */
+.movie-list {
+  min-height: 200px;
 }

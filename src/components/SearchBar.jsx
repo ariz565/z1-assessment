@@ -1,37 +1,35 @@
 import { useState, useCallback } from "react";
 import { debounce } from "../utils/debounce";
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, onClear }) {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
   const debouncedSearch = useCallback(
-    (searchTerm) => {
-      debounce((term) => {
-        if (term.length >= 3) {
-          onSearch(term);
-        }
-      }, 500)(searchTerm);
-    },
+    debounce((searchTerm) => {
+      if (searchTerm.length >= 3) {
+        onSearch(searchTerm);
+      }
+    }, 500),
     [onSearch]
   );
-
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery(value);
-    debouncedSearch(value.trim());
+    // We don't call debouncedSearch here to prevent automatic searching
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      onSearch(query.trim());
+      debouncedSearch(query.trim());
     }
   };
-
   const handleClear = () => {
     setQuery("");
+    // Notify parent component that search was cleared
+    if (onClear) {
+      onClear();
+    }
     // Focus back on input after clearing
     document.querySelector(".search-input").focus();
   };
