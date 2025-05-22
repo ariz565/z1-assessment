@@ -1,8 +1,14 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 2rem;
+  }
 }
 
 .logo {
@@ -46,6 +52,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .new-search-button {
@@ -57,6 +64,7 @@
   cursor: pointer;
   font-weight: bold;
   transition: var(--transition);
+  flex: 1;
 }
 
 .new-search-button:hover {
@@ -67,4 +75,5 @@
 /* Update the back button to remove margin-bottom */
 .back-button {
   margin-bottom: 0;
+  flex: 1;
 }

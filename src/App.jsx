@@ -99,16 +99,19 @@ function App() {
 
   return (
     <div className="app-container">
+      <div className="theme-container">
+        <button
+          className="theme-toggle"
+          onClick={() => setDarkMode(!darkMode)}
+          aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+        >
+          {darkMode ? "☀️" : "🌙"}
+        </button>
+      </div>
       <header>
         <h1>🎬 Movie Search App</h1>
         <div className="header-controls">
           <SearchBar onSearch={searchMovies} />
-          <button
-            className="theme-toggle"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? "☀️" : "🌙"}
-          </button>
         </div>
 
         {recentSearches.length > 0 && (

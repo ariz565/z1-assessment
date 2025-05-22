@@ -44,11 +44,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 header {
   text-align: center;
   margin-bottom: 2rem;
+  position: relative;
 }
 
 header h1 {
@@ -63,6 +65,20 @@ header h1 {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Theme Container */
+.theme-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  z-index: 100;
 }
 
 /* Theme Toggle */
@@ -79,6 +95,7 @@ header h1 {
   cursor: pointer;
   font-size: 1.2rem;
   transition: var(--transition);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .theme-toggle:hover {
@@ -153,6 +170,7 @@ header h1 {
   display: flex;
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .search-input {
@@ -162,6 +180,8 @@ header h1 {
   border-right: none;
   border-radius: var(--border-radius) 0 0 var(--border-radius);
   font-size: 16px;
+  background-color: var(--card-color);
+  color: var(--text-color);
 }
 
 .search-input:focus {
@@ -227,7 +247,11 @@ header h1 {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
   color: white;
   text-align: center;
   padding: 1rem;
@@ -331,15 +355,18 @@ header h1 {
 .detail-info h2 {
   margin-bottom: 12px;
   color: var(--primary-color);
+  word-break: break-word;
 }
 
 .year {
   color: var(--text-light);
   font-weight: normal;
+  display: inline-block;
 }
 
 .meta-info {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -501,7 +528,12 @@ footer {
 }
 
 /* Responsive Design */
+/* Tablet Devices */
 @media (max-width: 768px) {
+  .app-container {
+    padding: 15px;
+  }
+
   .detail-container {
     flex-direction: column;
   }
@@ -518,5 +550,84 @@ footer {
 
   .movie-list {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .header-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .recent-searches {
+    margin-top: 2rem;
+  }
+
+  .ratings {
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .movie-card h3 {
+    font-size: 14px;
+  }
+
+  .movie-info p {
+    font-size: 12px;
+  }
+
+  .detail-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .back-button,
+  .new-search-button {
+    width: 100%;
+  }
+
+  .detail-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .meta-info {
+    flex-wrap: wrap;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pagination-button {
+    width: 100%;
+  }
+
+  .search-tags {
+    justify-content: flex-start;
   }
 }
